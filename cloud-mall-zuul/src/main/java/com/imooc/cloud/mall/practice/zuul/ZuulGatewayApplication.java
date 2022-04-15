@@ -1,11 +1,12 @@
-package com.tkn.cloud.mall.practice.user;
+package com.imooc.cloud.mall.practice.zuul;
 
-import lombok.extern.log4j.Log4j2;
-import org.mybatis.spring.annotation.MapperScan;
+import com.tkn.cloud.mall.practice.user.UserApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -14,16 +15,17 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * 描述：     启动类
+ * 描述：     网关启动类
  */
-@SpringBootApplication
-@MapperScan(basePackages = "com.tkn.cloud.mall.practice.user.model.dao")
+@EnableZuulProxy
+@EnableFeignClients
+@SpringCloudApplication
 @EnableRedisHttpSession
-public class UserApplication {
+public class ZuulGatewayApplication {
 
-    static Logger logger= LoggerFactory.getLogger(UserApplication.class);
+    static Logger logger= LoggerFactory.getLogger(ZuulGatewayApplication.class);
     public static void main(String[] args) throws UnknownHostException {
-        ConfigurableApplicationContext application=SpringApplication.run(UserApplication.class, args);
+        ConfigurableApplicationContext application=SpringApplication.run(ZuulGatewayApplication.class, args);
         Environment env = application.getEnvironment();
         logger.info("\n----------------------------------------------------------\n\t" +
                         "Application '{}' is running! Access URLs:\n\t" +
