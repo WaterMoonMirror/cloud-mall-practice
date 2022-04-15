@@ -8,6 +8,8 @@
         <module>cloud-mall-zuul</module>
         <module>cloud-mall-user</module>
         <module>cloud-mall-common</module>
+        <module>cloud-mall-cart-order</module>
+        <module>cloud-mall-category-product</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
